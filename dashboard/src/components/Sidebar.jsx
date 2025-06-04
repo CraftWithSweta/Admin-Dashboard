@@ -19,6 +19,7 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { useNavigate } from 'react-router-dom';
+import { useAppStore } from '../AppStore';
 
 const drawerWidth = 240;
 
@@ -87,17 +88,19 @@ const navItems = [
 
 export default function Sidebar() {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(true);
+  // const [open, setOpen] = React.useState(true);
+   
+    const open=useAppStore((state)=>state.dopen)
 
   const navigate=useNavigate();
 
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-     
+     <Box height={30}/>
       <Drawer variant="permanent" open={open}>
   <DrawerHeader>
-    <IconButton onClick={()=>setOpen(!open)}>
+    <IconButton >
       {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
     </IconButton>
   </DrawerHeader>
